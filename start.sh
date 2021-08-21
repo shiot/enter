@@ -19,7 +19,7 @@ function startScript() {
     mv "/root/$scriptName-${gh_tag}/" "/root/$scriptName/"
     find "/root/$scriptName/" -type f -iname "*.sh" -exec chmod +x {} \;
   } | whiptail
-  bash "/root/$scriptName/start.sh"
+  bash "/root/$scriptName/start.sh" $lang
 }
 
 green='\e[32m'
