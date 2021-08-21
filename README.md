@@ -6,4 +6,4 @@ curl -sSL enter.smarthome-iot.net | bash
 
 
 ### Find descriptions and tutorials on my website 
-[Auf Deutsch](https://smarthome-iot.net/) oder [In English](https://smarthome-iot.net/en/)
+[Auf Deutsch](https://smarthome-iot.net/) or [in English](https://smarthome-iot.net/en/)
