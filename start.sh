@@ -24,10 +24,8 @@ startScript() {
   fi
 }
 
-menu=(\
-      "1" "  ${txt_010}" \  # pve_HomeServer
-      "Q" "  ${txt_999}" \  # Exit
-     )
+menu=("1" "  ${txt_010}" \
+      "Q" "  ${txt_999}")
 
 script=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" --title "${txt_001}" "\n${txt_002}" 20 80 10 "${menu[@]}" 3>&1 1>&2 2>&3)
 
