@@ -60,7 +60,7 @@ logo
 #menu
 
 echo -e "  $(ColorGreen \"1)\") $txt_010"
-echo -e ""
+echo ""
 echo -e "  $(ColorGreen \"Q)\") $txt_999"
 echo -e "  $(ColorBlue \"$txt_002\"): "
 
