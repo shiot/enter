@@ -17,7 +17,11 @@ startScript() {
     mv "/root/$scriptName-${gh_tag}/" "/root/$scriptName/"
     find "/root/$scriptName/" -type f -iname "*.sh" -exec chmod +x {} \;
   } | whiptail
-  bash "/root/$scriptName/start.sh" $lang
+  if [[ $1 == "master" ]]; then
+    bash "/root/$scriptName/start.sh" $lang master
+  else
+    bash "/root/$scriptName/start.sh" $lang
+  fi
 }
 
 whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" --title "${txt_001}" "\n${txt_002}" 20 80 10 \
