@@ -47,7 +47,7 @@ menu(){
           case $a in
             1) startScript "pve_HomeServer" ; menu ;;
             0) exit 0 ;;
-            *) echo -e $red"$txt_998"$clear; WrongCommand;;
+            *) $(ColorRed "$txt_998"); WrongCommand;;
           esac
 }
 
