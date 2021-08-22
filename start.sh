@@ -12,10 +12,11 @@ githubLatest(){
 
 startScript() {
   scriptName=$1
-  gh_tag=$(githubLatest "shiot/$scriptName")
   if [[ $branch == "master" ]]; then
+    gh_tag=master
     downloadURL="https://github.com/shiot/$scriptName/archive/refs/heads/master.tar.gz"
   else
+    gh_tag=$(githubLatest "shiot/$scriptName")
     downloadURL="https://github.com/shiot/$scriptName/archive/refs/tags/${gh_tag}.tar.gz"
   fi
   {
