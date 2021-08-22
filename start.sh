@@ -68,5 +68,5 @@ read n
 case $n in
   1) startScript "pve_HomeServer";;
   Q) exit 0;;
-  *) $(ColorRed "$txt_998");;
+  *) echo "  $(ColorRed "$txt_998")";;
 esac
