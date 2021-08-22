@@ -39,22 +39,34 @@ ColorYellow(){
 	echo -ne $yellow$1$clear
 }
 
-menu(){
-  echo -ne "
-  $txt_001
-  $(ColorGreen 1)) $txt_010
-  $(ColorGreen 0)) $txt_999
-  $(ColorBlue $txt_002:)"
-          read a
-          case $a in
-            1) startScript "pve_HomeServer" ; menu ;;
-            0) exit 0 ;;
-            *) $(ColorRed "$txt_998"); WrongCommand;;
-          esac
-}
+#menu(){
+#  echo -ne "
+#  $txt_001
+#  $(ColorGreen 1)) $txt_010
+#  $(ColorGreen 0)) $txt_999
+#  $(ColorBlue $txt_002:)"
+#          read a
+#          case $a in
+#            1) startScript "pve_HomeServer" ; menu ;;
+#            0) exit 0 ;;
+#            *) $(ColorRed "$txt_998"); WrongCommand;;
+#          esac
+#}
 
 clear
 source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/logo.sh)
 logo
 
-menu
+#menu
+
+echo "  $(ColorGreen 1)) $txt_010"
+echo ""
+echo "  $(ColorGreen Q)) $txt_999"
+echo ColorBlue $txt_002:
+
+read n
+case $n in
+  1) startScript "pve_HomeServer";;
+  2) exit 0;;
+  *) $(ColorRed "$txt_998");;
+esac
