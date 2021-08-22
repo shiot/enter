@@ -1,5 +1,7 @@
 #!/bin/bash
 
+if [[ $1 == "master" ]]; then branch=master; fi
+
 source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/_list.sh)
 lang=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" "\nSelect your Language" 20 80 10 "${lng[@]}" 3>&1 1>&2 2>&3)
 source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/$lang.sh)
@@ -9,18 +11,29 @@ githubLatest(){
 }
 
 startScript() {
-  {
-    scriptName=$1
-    gh_tag=$(githubLatest "shiot/$scriptName")
+  scriptName=$1
+  gh_tag=$(githubLatest "shiot/$scriptName")
+  if [[ $branch == "master" ]]; then
+    downloadURL="https://github.com/shiot/$scriptName/archive/refs/heads/master.tar.gz"
+  else
     downloadURL="https://github.com/shiot/$scriptName/archive/refs/tags/${gh_tag}.tar.gz"
+  fi
+  {
+    sleep 3
+    echo -e "XXX\n29\nSkriptstart wird vorbereitet, bitte warten ...\nXXX"
     wget -qc $downloadURL -O - | tar -xz
+    sleep 1
+    echo -e "XXX\n56\nSkriptstart wird vorbereitet, bitte warten ...\nXXX"
     mv "/root/$scriptName-${gh_tag}/" "/root/$scriptName/"
     find "/root/$scriptName/" -type f -iname "*.sh" -exec chmod +x {} \;
-  } | whiptail
-  if [[ $1 == "master" ]]; then
-    bash "/root/$scriptName/start.sh" $lang master
+    sleep 2
+    echo -e "XXX\n98\nSkriptstart wird vorbereitet, bitte warten ...\nXXX"
+    sleep 0.5
+  } | whiptail --gauge --backtitle "© 2021 - SmartHome-IoT.net" "Skriptstart wird vorbereitet, bitte warten ..." 6 80 0
+  if [[ $branch == "master" ]]; then
+    bash "/root/$scriptName/start.sh" "$lang" "master" 
   else
-    bash "/root/$scriptName/start.sh" $lang
+    bash "/root/$scriptName/start.sh" "$lang" 
   fi
 }
 
