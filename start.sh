@@ -38,17 +38,17 @@ ColorRed(){
 }
 
 menu(){
-echo -ne "
-$txt_001
-$(ColorGreen \"1)\") $txt_010
-$(ColorGreen \"0)\") $txt_999
-$(ColorBlue \"$txt_002:\") "
-        read a
-        case $a in
-	        1) startScript "pve_HomeServer" ; menu ;;
-		      0) exit 0 ;;
-		      *) echo -e $red"$txt_998"$clear; WrongCommand;;
-        esac
+  echo -ne "
+  $txt_001
+  $(ColorGreen 1)) $txt_010
+  $(ColorGreen 0)) $txt_999
+  $(ColorBlue $txt_002:)"
+          read a
+          case $a in
+            1) startScript "pve_HomeServer" ; menu ;;
+            0) exit 0 ;;
+            *) echo -e $red"$txt_998"$clear; WrongCommand;;
+          esac
 }
 
 clear
