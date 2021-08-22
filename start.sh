@@ -52,7 +52,7 @@ $(ColorBlue \"$txt_002:\") "
 }
 
 clear
-source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/default/logo.sh)
+source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/logo.sh)
 logo
 
 menu
