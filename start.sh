@@ -20,24 +20,24 @@ startScript() {
   bash "/root/$scriptName/start.sh" $lang
 }
 
-green='\e[92m'
-blue='\e[34m'
-red='\e[91m'
-yellow='\e[93m'
-clear='\e[0m'
+#green='\e[92m'
+#blue='\e[34m'
+#red='\e[91m'
+#yellow='\e[93m'
+#clear='\e[0m'
 
-ColorGreen(){
-	echo -ne $green$1$clear
-}
-ColorBlue(){
-	echo -ne $blue$1$clear
-}
-ColorRed(){
-	echo -ne $red$1$clear
-}
-ColorYellow(){
-	echo -ne $yellow$1$clear
-}
+#ColorGreen(){
+#	echo -ne $green$1$clear
+#}
+#ColorBlue(){
+#	echo -ne $blue$1$clear
+#}
+#ColorRed(){
+#	echo -ne $red$1$clear
+#}
+#ColorYellow(){
+#	echo -ne $yellow$1$clear
+#}
 
 #menu(){
 #  echo -ne "
@@ -53,20 +53,34 @@ ColorYellow(){
 #          esac
 #}
 
-clear
-source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/logo.sh)
-logo
+#clear
+#source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/logo.sh)
+#logo
 
 #menu
 
-echo -e "  $(ColorGreen \"1)\") $txt_010"
-echo ""
-echo -e "  $(ColorGreen \"Q)\") $txt_999"
-echo -e "  $(ColorBlue \"$txt_002\"): "
+#echo -e "  $(ColorGreen 1\)) $txt_010"
+#echo ""
+#echo -e "  $(ColorGreen Q\)) $txt_999"
+#echo -e "  $(ColorBlue \"$txt_002\"): "
 
-read n
-case $n in
-  1) startScript "pve_HomeServer";;
-  Q) exit 0;;
-  *) echo "  $(ColorRed \"$txt_998\")";;
-esac
+#read n
+#case $n in
+#  1) startScript "pve_HomeServer";;
+#  Q) exit 0;;
+#  *) echo "  $(ColorRed \"$txt_998\")";;
+#esac
+
+#PS3="  $(ColorBlue \"$txt_002\"): "
+#scripts=("  $(ColorGreen 1\)) $txt_010" \
+#        "  $(ColorGreen Q\)) $txt_999")
+
+whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" --title "${txt_001}" "\n${txt_002}" 20 80 10 \
+"1" "  ${txt_010}" \
+"Q" "  ${txt_999}"
+script=$?
+if [[ $script == "1" ]]; then
+  startScript "pve_HomeServer"
+elif [[ $script == "Q" ]]; then
+  exit 0
+fi
