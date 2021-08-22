@@ -20,6 +20,8 @@ startScript() {
     downloadURL="https://github.com/shiot/$scriptName/archive/refs/tags/${gh_tag}.tar.gz"
   fi
   {
+    if [ -d "/root/$scriptName/" ]; then rm -rf "/root/$scriptName/"; fi
+    if [ -d "/root/$scriptName-${gh_tag}/" ]; then rm -rf "/root/$scriptName-${gh_tag}/"; fi
     sleep 3
     echo -e "XXX\n29\nSkriptstart wird vorbereitet, bitte warten ...\nXXX"
     wget -qc $downloadURL -O - | tar -xz
