@@ -59,14 +59,14 @@ logo
 
 #menu
 
-echo "  $(ColorGreen 1)) $txt_010"
+echo "  $(ColorGreen '1)') $txt_010"
 echo ""
-echo "  $(ColorGreen Q)) $txt_999"
-echo "  $(ColorBlue $txt_002): "
+echo "  $(ColorGreen 'Q)') $txt_999"
+echo '  $(ColorBlue '"$txt_002"'): '
 
 read n
 case $n in
   1) startScript "pve_HomeServer";;
   Q) exit 0;;
-  *) echo "  $(ColorRed "$txt_998")";;
+  *) echo '  $(ColorRed '"$txt_998"')';;
 esac
