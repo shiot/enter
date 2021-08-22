@@ -4,13 +4,11 @@ source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language
 lang=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" "\nSelect your Language" 20 80 10 "${lng[@]}" 3>&1 1>&2 2>&3)
 source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/$lang.sh)
 
-function githubLatest() {
-  curl --silent "https://api.github.com/repos/$1/releases/latest" | 
-    grep '"tag_name":' |                                            # Get tag line
-    sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
+githubLatest(){
+  curl --silent "https://api.github.com/repos/$1/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
 }
 
-function startScript() {
+startScript() {
   {
     scriptName=$1
     gh_tag=$(githubLatest "shiot/$scriptName")
@@ -22,9 +20,10 @@ function startScript() {
   bash "/root/$scriptName/start.sh" $lang
 }
 
-green='\e[32m'
+green='\e[92m'
 blue='\e[34m'
-red='\e[31m'
+red='\e[91m'
+yellow='\e[93m'
 clear='\e[0m'
 
 ColorGreen(){
@@ -35,6 +34,9 @@ ColorBlue(){
 }
 ColorRed(){
 	echo -ne $red$1$clear
+}
+ColorYellow(){
+	echo -ne $yellow$1$clear
 }
 
 menu(){
