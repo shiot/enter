@@ -8,7 +8,13 @@ if [ -f "/opt/smarthome-iot_net/config.sh" ]; then
 else
   source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/_list.sh)
   var_language=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" "\nSelect your Language" 20 80 10 "${lng[@]}" 3>&1 1>&2 2>&3)
+fi
+
+# check if language File exist, if not load english
+if curl --output /dev/null --silent --head --fail "https://raw.githubusercontent.com/shiot/enter/master/language/${var_language}.sh"; then
   source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/${var_language}.sh)
+else
+  source https://raw.githubusercontent.com/shiot/enter/master/language/en.sh
 fi
 
 githubLatest(){
