@@ -3,9 +3,13 @@
 
 if [[ $1 == "master" ]]; then branch=master; fi
 
-source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/_list.sh)
-lang=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" "\nSelect your Language" 20 80 10 "${lng[@]}" 3>&1 1>&2 2>&3)
-source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/$lang.sh)
+if [ -f "/opt/smarthome-iot_net/config.sh" ]; then
+  source /opt/smarthome-iot_net/config.sh
+else
+  source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/_list.sh)
+  var_language=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" "\nSelect your Language" 20 80 10 "${lng[@]}" 3>&1 1>&2 2>&3)
+  source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/${var_language}.sh)
+fi
 
 githubLatest(){
   curl --silent "https://api.github.com/repos/$1/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
@@ -35,9 +39,9 @@ startScript() {
     sleep 0.5
   } | whiptail --gauge --backtitle "© 2021 - SmartHome-IoT.net" "Skriptstart wird vorbereitet, bitte warten ..." 6 80 0
   if [[ $branch == "master" ]]; then
-    bash "/root/$scriptName/start_new.sh" "$lang" "master" 
+    if bash "/root/$scriptName/start_new.sh" "${var_language}" "master"; then startmenu; else startmenu; fi
   else
-    bash "/root/$scriptName/start.sh" "$lang" 
+    if bash "/root/$scriptName/start.sh" "${var_language}"; then startmenu; else startmenu; fi
   fi
 }
 
@@ -49,7 +53,7 @@ menu=("1" "  ${txt_010}" \
 script=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" --title " ${txt_001} " "\n${txt_002}" 20 80 10 "${menu[@]}" 3>&1 1>&2 2>&3)
 
 if [[ $script == "1" ]]; then
-  if startScript "pve_HomeServer"; then menu; else exit; fi
+  startScript "pve_HomeServer"
 elif [[ $script == "Q" ]]; then
   exit
 else
