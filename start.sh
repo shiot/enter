@@ -52,6 +52,8 @@ if [[ $script == "1" ]]; then
   if startScript "pve_HomeServer"; then menu; else exit; fi
 elif [[ $script == "Q" ]]; then
   exit
+else
+  startmenu
 fi
 }
 
