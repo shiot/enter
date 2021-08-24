@@ -54,3 +54,5 @@ elif [[ $script == "Q" ]]; then
   exit
 fi
 }
+
+menu
