@@ -1,4 +1,5 @@
 #!/bin/bash
+# curl -sSL enter.smarthome-iot.net | bash /dev/stdin master for testing
 
 if [[ $1 == "master" ]]; then branch=master; fi
 
