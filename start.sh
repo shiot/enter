@@ -41,7 +41,7 @@ startScript() {
   fi
 }
 
-function menu() {
+function startmenu() {
 menu=("1" "  ${txt_010}" \
       "" ""              \
       "Q" "  ${txt_999}")
@@ -55,4 +55,4 @@ elif [[ $script == "Q" ]]; then
 fi
 }
 
-menu
+startmenu
