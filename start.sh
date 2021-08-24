@@ -35,7 +35,7 @@ startScript() {
     sleep 0.5
   } | whiptail --gauge --backtitle "© 2021 - SmartHome-IoT.net" "Skriptstart wird vorbereitet, bitte warten ..." 6 80 0
   if [[ $branch == "master" ]]; then
-    bash "/root/$scriptName/start.sh" "$lang" "master" 
+    bash "/root/$scriptName/start_new.sh" "$lang" "master" 
   else
     bash "/root/$scriptName/start.sh" "$lang" 
   fi
