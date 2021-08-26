@@ -8,6 +8,7 @@ if [ -f "/opt/smarthome-iot_net/config.sh" ]; then
 else
   source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/_list.sh)
   var_language=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" "\nSelect your Language" 20 80 10 "${lng[@]}" 3>&1 1>&2 2>&3)
+  startScript "pve_HomeServer"
 fi
 
 # check if language File exist, if not load english
@@ -45,9 +46,21 @@ startScript() {
     sleep 0.5
   } | whiptail --gauge --backtitle "© 2021 - SmartHome-IoT.net" "Skriptstart wird vorbereitet, bitte warten ..." 6 80 0
   if [[ $branch == "master" ]]; then
-    if bash "/root/$scriptName/start.sh" "${var_language}" "master"; then startmenu; else startmenu; fi
+    if bash "/root/$scriptName/start.sh" "${var_language}" "master"; then
+      rm -rf "/root/$scriptName"
+      startmenu
+    else
+      rm -rf "/root/$scriptName"
+      startmenu
+    fi
   else
-    if bash "/root/$scriptName/start.sh" "${var_language}"; then startmenu; else startmenu; fi
+    if bash "/root/$scriptName/start.sh" "${var_language}"; then
+      rm -rf "/root/$scriptName"
+      startmenu
+    else
+      rm -rf "/root/$scriptName"
+      startmenu
+    fi
   fi
 }
 
