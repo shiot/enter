@@ -6,4 +6,4 @@ curl -sSL enter.smarthome-iot.net | bash
 ```
 
 
-#### Find descriptions and tutorials on my website "[auf Deutsch](https://smarthome-iot.net/)" or "[in English](https://smarthome-iot.net/en/)"
+#### Find descriptions and tutorials on "[my Website](https://smarthome-iot.net/)"
