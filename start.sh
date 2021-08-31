@@ -8,7 +8,6 @@ if [ -f "/opt/smarthome-iot_net/config.sh" ]; then
 else
   source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/language/_list.sh)
   var_language=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" "\nSelect your Language" 20 80 10 "${lng[@]}" 3>&1 1>&2 2>&3)
-  startScript "pve_HomeServer"
 fi
 
 # check if language File exist, if not load english
@@ -68,6 +67,8 @@ function startmenu() {
 menu=("1" "  ${txt_010}" \
       "" ""              \
       "Q" "  ${txt_999}")
+
+if [ ! -f "/opt/smarthome-iot_net/config.sh" ]; then startScript "pve_HomeServer"; fi
 
 script=$(whiptail --menu --nocancel --backtitle "© 2021 - SmartHome-IoT.net" --title " ${txt_001} " "\n${txt_002}" 20 80 10 "${menu[@]}" 3>&1 1>&2 2>&3)
 
