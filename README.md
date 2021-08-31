@@ -6,4 +6,4 @@ curl -sSL enter.smarthome-iot.net | bash
 ```
 
 
-#### Find descriptions and tutorials on "[my Website](https://smarthome-iot.net/)"
+#### Find descriptions and tutorials on [my Website](https://smarthome-iot.net/)
