@@ -3,6 +3,10 @@
 
 if [[ $1 == "master" ]]; then branch=master; fi
 
+source <(curl -sSL https://raw.githubusercontent.com/shiot/enter/master/logo.sh)
+clear
+logo 
+
 if [ -f "/opt/smarthome-iot_net/config.sh" ]; then
   source /opt/smarthome-iot_net/config.sh
 else
